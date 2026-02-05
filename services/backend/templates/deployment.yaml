@@ -1,0 +1,44 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ include "my-express-app.fullname" . }}
+  labels:
+    app: {{ include "my-express-app.name" . }}
+spec:
+  replicas: {{ .Values.replicaCount }}
+  selector:
+    matchLabels:
+      app: {{ include "my-express-app.name" . }}
+  template:
+    metadata:
+      labels:
+        app: {{ include "my-express-app.name" . }}
+    spec:
+      containers:
+        - name: {{ include "my-express-app.name" . }}
+          image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}"
+          imagePullPolicy: {{ .Values.image.pullPolicy }}
+          ports:
+            - containerPort: {{ .Values.service.targetPort }}
+          env:
+            {{- range .Values.env }}
+            - name: {{ .name }}
+              {{- if .value }}
+              value: {{ .value | quote }}
+              {{- end }}
+              {{- if .secretKey }}
+              valueFrom:
+                secretKeyRef:
+                  name: {{ $.Release.Name }}-secret
+                  key: {{ .secretKey }}
+              {{- end }}
+            {{- end }}
+
+          readinessProbe:
+{{ toYaml .Values.readinessProbe | indent 12 }}
+
+          livenessProbe:
+{{ toYaml .Values.livenessProbe | indent 12 }}
+
+          resources:
+{{ toYaml .Values.resources | indent 12 }}

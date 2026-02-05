@@ -1,0 +1,18 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: frontend-production
+  namespace: argocd
+spec:
+  project: default
+  source:
+    repoURL: https://github.com/AayushChauhan1916/deveops-charts
+    targetRevision: main
+    path: services/frontend
+    helm:
+      valueFiles:
+        - values-production.yaml
+  destination:
+    server: https://kubernetes.default.svc
+    namespace: production
+  syncPolicy: {}

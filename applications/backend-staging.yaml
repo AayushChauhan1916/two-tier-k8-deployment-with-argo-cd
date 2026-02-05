@@ -1,0 +1,21 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: k8-final-staging
+  namespace: argocd
+spec:
+  project: default
+  source:
+    repoURL: https://github.com/AayushChauhan1916/deveops-charts
+    targetRevision: main
+    path: services/backend
+    helm:
+      valueFiles:
+        - values-staging.yaml
+  destination:
+    server: https://kubernetes.default.svc
+    namespace: staging
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true

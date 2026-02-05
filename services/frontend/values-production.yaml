@@ -1,0 +1,23 @@
+replicaCount: 1
+image:
+  repository: asia-south1-docker.pkg.dev/learning-481011/learning/frontend-prod
+  pullPolicy: Always
+  tag: 90f4de2
+resources:
+  requests:
+    cpu: 100m
+    memory: 128Mi
+  limits:
+    cpu: 300m
+    memory: 256Mi
+hpa:
+  enabled: true
+  minReplicas: 1
+  maxReplicas: 3
+  targetCPUUtilizationPercentage: 70
+gateway:
+  name: envoy-gateway
+  namespace: envoy-gateway-system
+hostnames:
+  - example.com
+  - www.example.com
