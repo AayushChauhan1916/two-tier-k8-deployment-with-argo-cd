@@ -1,11 +1,11 @@
-{{- define "my-express-app.fullname" -}}
-{{- printf "%s-%s" .Release.Name .Chart.Name | trunc 63 | trimSuffix "-" -}}
+{{- define "chart.name" -}}
+{{- default .Chart.Name .Values.nameOverride | trunc 63 | trimSuffix "-" -}}
 {{- end -}}
 
-{{- define "my-express-app.name" -}}
-{{- .Chart.Name -}}
+{{- define "chart.fullname" -}}
+{{- printf "%s-%s" .Release.Name (include "chart.name" .) | trunc 63 | trimSuffix "-" -}}
 {{- end -}}
 
 {{- define "app.secretName" -}}
-{{- printf "%s-secret" .Release.Name -}}
+{{- printf "%s-secret" (include "chart.fullname" .) | trunc 63 | trimSuffix "-" -}}
 {{- end -}}

@@ -1,7 +1,7 @@
-{{- define "frontend.fullname" -}}
-{{- printf "%s-frontend" .Release.Name | trunc 63 | trimSuffix "-" -}}
+{{- define "chart.name" -}}
+{{- .Release.Name | trunc 63 | trimSuffix "-" -}}
 {{- end -}}
 
-{{- define "frontend.name" -}}
-frontend
+{{- define "chart.fullname" -}}
+{{- .Release.Name | trunc 63 | trimSuffix "-" -}}
 {{- end -}}
