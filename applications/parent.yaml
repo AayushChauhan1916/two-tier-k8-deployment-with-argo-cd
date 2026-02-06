@@ -1,12 +1,12 @@
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
-  name: apps
+  name: root
   namespace: argocd
 spec:
   project: default
   source:
-    repoURL: https://github.com/AayushChauhan1916/deveops-charts
+    repoURL: https://github.com/AayushChauhan1916/two-tier-k8-deployment-with-argo-cd
     targetRevision: main
     path: applications
   destination:
@@ -14,5 +14,4 @@ spec:
     namespace: argocd
   syncPolicy:
     automated:
-      prune: true
       selfHeal: true

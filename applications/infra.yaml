@@ -1,21 +1,19 @@
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
-  name: k8-final-staging
+  name: infra
   namespace: argocd
 spec:
   project: default
   source:
-    repoURL: https://github.com/AayushChauhan1916/deveops-charts
+    repoURL: https://github.com/AayushChauhan1916/two-tier-k8-deployment-with-argo-cd
     targetRevision: main
-    path: services/backend
-    helm:
-      valueFiles:
-        - values-staging.yaml
+    path: infra
   destination:
     server: https://kubernetes.default.svc
-    namespace: staging
+    namespace: argocd
   syncPolicy:
     automated:
       prune: true
       selfHeal: true
+

@@ -19,5 +19,5 @@ gateway:
   name: envoy-gateway
   namespace: envoy-gateway-system
 hostnames:
-  - example.com
-  - www.example.com
+  - cardflex.in
+  - www.cardflex.in

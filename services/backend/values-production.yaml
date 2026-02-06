@@ -30,7 +30,7 @@ livenessProbe:
   periodSeconds: 20
 env:
   - name: PORT
-    value: "8080"
+    value: '8080'
   - name: JWT_SECRET
     secretKey: JWT_SECRET
 hpa:
@@ -44,5 +44,5 @@ gateway:
   name: envoy-gateway
   namespace: envoy-gateway-system
 hostnames:
-  - example.com
-  - www.example.com
+  - api.cardflex.in
+  - www.api.cardflex.in
