@@ -9,8 +9,6 @@ spec:
     repoURL: https://github.com/AayushChauhan1916/two-tier-k8-deployment-with-argo-cd
     targetRevision: main
     path: services/backend
-    directory:
-      recurse: true
     helm:
       valueFiles:
         - values-production.yaml
