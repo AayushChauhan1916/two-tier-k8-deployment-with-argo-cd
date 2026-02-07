@@ -29,7 +29,7 @@ spec:
               {{- if .secretKey }}
               valueFrom:
                 secretKeyRef:
-                  name: {{ include "chart.secretName" . }}
+                  name: {{ include "chart.secretName" $ }}
                   key: {{ .secretKey }}
               {{- end }}
             {{- end }}
