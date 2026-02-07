@@ -1,8 +1,8 @@
 replicaCount: 1
 image:
-  repository: asia-south1-docker.pkg.dev/learning-481011/learning/backend-prod
+  repository: asia-south1-docker.pkg.dev/learning-481011/k8-learning/backend-stag
   pullPolicy: Always
-  tag: 25b2b9f
+  tag: c2f51e7
 service:
   type: ClusterIP
   port: 80
@@ -34,7 +34,7 @@ env:
   - name: JWT_SECRET
     secretKey: JWT_SECRET
   - name: NODE_ENV
-    value: 'staging'
+    value: staging
 hpa:
   enabled: true
   minReplicas: 1
