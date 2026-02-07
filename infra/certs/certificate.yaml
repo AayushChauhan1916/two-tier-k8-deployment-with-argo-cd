@@ -1,7 +1,7 @@
 apiVersion: cert-manager.io/v1
 kind: Certificate
 metadata:
-  name: cardflex-wildcard
+  name: cardflex-cert
   namespace: envoy-gateway-system
 spec:
   secretName: cardflex-tls
@@ -10,4 +10,6 @@ spec:
     kind: ClusterIssuer
   dnsNames:
     - cardflex.in
-    - '*.cardflex.in'
+    - api.cardflex.in
+    - staging.cardflex.in
+    - api.staging.cardflex.in
