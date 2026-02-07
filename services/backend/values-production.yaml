@@ -33,6 +33,8 @@ env:
     value: '8080'
   - name: JWT_SECRET
     secretKey: JWT_SECRET
+  - name: NODE_ENV
+    value: 'production'
 hpa:
   enabled: true
   minReplicas: 1

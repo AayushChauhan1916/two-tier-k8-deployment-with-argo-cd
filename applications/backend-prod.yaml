@@ -1,0 +1,23 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: backend-prod
+  namespace: argocd
+spec:
+  project: default
+  source:
+    repoURL: https://github.com/AayushChauhan1916/two-tier-k8-deployment-with-argo-cd
+    targetRevision: main
+    path: services/backend
+    directory:
+      recurse: true
+    helm:
+      valueFiles:
+        - values-production.yaml
+  destination:
+    server: https://kubernetes.default.svc
+    namespace: backendprod
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true
