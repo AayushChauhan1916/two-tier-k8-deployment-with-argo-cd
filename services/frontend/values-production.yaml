@@ -15,6 +15,10 @@ hpa:
   minReplicas: 1
   maxReplicas: 3
   targetCPUUtilizationPercentage: 70
+service:
+  type: ClusterIP
+  port: 80
+  targetPort: 80
 gateway:
   name: envoy-gateway
   namespace: envoy-gateway-system
