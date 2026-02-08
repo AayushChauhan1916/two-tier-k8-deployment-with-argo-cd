@@ -5,18 +5,19 @@ metadata:
   namespace: envoy-gateway-system
 spec:
   secretName: cardflex-tls
+
   issuerRef:
     name: letsencrypt-prod
     kind: ClusterIssuer
-    dnsNames:
-      - cardflex.in
-      - www.cardflex.in
-      - api.cardflex.in
-      - www.api.cardflex.in
-      - staging.cardflex.in
-      - www.staging.cardflex.in
-      - api.staging.cardflex.in
-      - www.api.staging.cardflex.in
-      - argo.cardflex.in
-      - www.argo.cardflex.in
 
+  dnsNames:
+    - cardflex.in
+    - www.cardflex.in
+    - api.cardflex.in
+    - www.api.cardflex.in
+    - staging.cardflex.in
+    - www.staging.cardflex.in
+    - api.staging.cardflex.in
+    - www.api.staging.cardflex.in
+    - argo.cardflex.in
+    - www.argo.cardflex.in
