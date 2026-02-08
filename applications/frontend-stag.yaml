@@ -3,6 +3,11 @@ kind: Application
 metadata:
   name: frontend-stag
   namespace: argocd
+  annotations:
+    notifications.argoproj.io/subscribe.on-sync-running.email: aayushchauhan1916@gmail.com
+    notifications.argoproj.io/subscribe.on-sync-succeeded.email: aayushchauhan1916@gmail.com
+    notifications.argoproj.io/subscribe.on-sync-failed.email: aayushchauhan1916@gmail.com
+    notifications.argoproj.io/subscribe.on-health-degraded.email: aayushchauhan1916@gmail.com
 spec:
   project: default
   source:
