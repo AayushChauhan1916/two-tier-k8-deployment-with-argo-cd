@@ -2,7 +2,7 @@ replicaCount: 1
 image:
   repository: asia-south1-docker.pkg.dev/learning-481011/k8-learning/frontend-prod
   pullPolicy: Always
-  tag: f20ea62
+  tag: 66c6415
 resources:
   requests:
     cpu: 100m
