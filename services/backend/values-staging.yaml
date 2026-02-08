@@ -47,3 +47,4 @@ gateway:
   namespace: envoy-gateway-system
 hostnames:
   - api.staging.cardflex.in
+  - www.api.staging.cardflex.in
