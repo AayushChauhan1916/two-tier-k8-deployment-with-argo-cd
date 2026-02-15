@@ -1,0 +1,51 @@
+notifications:
+  enabled: true
+
+  secret:
+    create: true
+      
+  cm:
+    service.email.gmail: |
+      host: smtp.gmail.com
+      port: 465
+      from: your-email@gmail.com
+      username: $email-username
+      password: $email-password
+      insecure_skip_verify: true
+
+    trigger.on-sync-succeeded: |
+      - description: Application sync succeeded
+        send:
+          - app-sync-succeeded
+
+    trigger.on-sync-failed: |
+      - description: Application sync failed
+        send:
+          - app-sync-failed
+
+    trigger.on-health-degraded: |
+      - description: Application health degraded
+        send:
+          - app-health-degraded
+
+    template.app-sync-succeeded: |
+      email:
+        subject: "✅ Sync Succeeded - {{.app.metadata.name}}"
+        body: |
+          Application: {{.app.metadata.name}}
+          Project: {{.app.spec.project}}
+          Repo: {{.app.spec.source.repoURL}}
+          Revision: {{.app.status.sync.revision}}
+
+    template.app-sync-failed: |
+      email:
+        subject: "❌ Sync Failed - {{.app.metadata.name}}"
+        body: |
+          Sync failed for app {{.app.metadata.name}}.
+          Check Argo CD UI for details.
+
+    template.app-health-degraded: |
+      email:
+        subject: "⚠ Health Degraded - {{.app.metadata.name}}"
+        body: |
+          Application {{.app.metadata.name}} is degraded.

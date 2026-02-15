@@ -1,23 +1,23 @@
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
-  name: infra
+  name: cert-manager
   namespace: argocd
   annotations:
     argocd.argoproj.io/sync-wave: "1"
 spec:
   project: default
   source:
-    repoURL: https://github.com/AayushChauhan1916/two-tier-k8-deployment-with-argo-cd
-    targetRevision: main
-    path: infra
+    repoURL: https://charts.jetstack.io
+    chart: cert-manager
+    targetRevision: v1.19.3
     helm:
-      valueFiles:
-        - values.yaml
-        - ../constants/production/common.yaml
+      values: |-
+        installCRDs: false
   destination:
     server: https://kubernetes.default.svc
+    namespace: cert-manager
   syncPolicy:
     automated:
-      prune: true
       selfHeal: true
+      prune: true

@@ -1,28 +1,30 @@
-# apiVersion: argoproj.io/v1alpha1
-# kind: Application
-# metadata:
-#   name: frontend-prod
-#   namespace: argocd
-#   annotations:
-#     notifications.argoproj.io/subscribe.on-sync-running.email: aayushchauhan1916@gmail.com
-#     notifications.argoproj.io/subscribe.on-sync-succeeded.email: aayushchauhan1916@gmail.com
-#     notifications.argoproj.io/subscribe.on-sync-failed.email: aayushchauhan1916@gmail.com
-#     notifications.argoproj.io/subscribe.on-health-degraded.email: aayushchauhan1916@gmail.com
-# spec:
-#   project: default
-#   source:
-#     repoURL: https://github.com/AayushChauhan1916/two-tier-k8-deployment-with-argo-cd
-#     targetRevision: main
-#     path: services/frontend
-#     helm:
-#       valueFiles:
-#         - values-production.yaml
-#   destination:
-#     server: https://kubernetes.default.svc
-#     namespace: frontendprod
-#   syncPolicy:
-#     automated:
-#       prune: false
-#       selfHeal: true
-#     syncOptions:
-#       - CreateNamespace=true
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: frontend-prod
+  namespace: argocd
+  annotations:
+    notifications.argoproj.io/subscribe.on-sync-running.email: aayushchauhan1916@gmail.com
+    notifications.argoproj.io/subscribe.on-sync-succeeded.email: aayushchauhan1916@gmail.com
+    notifications.argoproj.io/subscribe.on-sync-failed.email: aayushchauhan1916@gmail.com
+    notifications.argoproj.io/subscribe.on-health-degraded.email: aayushchauhan1916@gmail.com
+    argocd.argoproj.io/sync-wave: "2"
+spec:
+  project: default
+  source:
+    repoURL: https://github.com/AayushChauhan1916/two-tier-k8-deployment-with-argo-cd
+    targetRevision: main
+    path: services/frontend
+    helm:
+      valueFiles:
+        - ../../constants/production/common.yaml
+        - values-production.yaml
+  destination:
+    server: https://kubernetes.default.svc
+    namespace: production
+  syncPolicy:
+    automated:
+      prune: false
+      selfHeal: true
+    syncOptions:
+      - CreateNamespace=true

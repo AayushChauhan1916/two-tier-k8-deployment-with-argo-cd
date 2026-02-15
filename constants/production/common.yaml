@@ -32,4 +32,3 @@ global:
   
   secretStore:
     name: gcp-secret-manager
-    projectID: learning-481011
