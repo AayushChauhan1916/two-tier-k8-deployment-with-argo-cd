@@ -1,23 +1,18 @@
+{{- if .Values.global.certificate }}
 apiVersion: cert-manager.io/v1
 kind: Certificate
 metadata:
-  name: cardflex-cert
-  namespace: envoy-gateway-system
+  name: {{ .Values.global.certificate.name }}
+  namespace: {{ .Values.global.certificate.namespace }}
 spec:
-  secretName: cardflex-tls
+  secretName: {{ .Values.global.certificate.secretName }}
 
   issuerRef:
-    name: letsencrypt-prod
-    kind: ClusterIssuer
+    name: {{ .Values.global.certificate.issuerRef.name }}
+    kind: {{ .Values.global.certificate.issuerRef.kind }}
 
   dnsNames:
-    - cardflex.in
-    - www.cardflex.in
-    - api.cardflex.in
-    - www.api.cardflex.in
-    - staging.cardflex.in
-    - www.staging.cardflex.in
-    - api.staging.cardflex.in
-    - www.api.staging.cardflex.in
-    - argo.cardflex.in
-    - www.argo.cardflex.in
+{{- range .Values.global.certificate.dnsNames }}
+    - {{ . }}
+{{- end }}
+{{- end }}

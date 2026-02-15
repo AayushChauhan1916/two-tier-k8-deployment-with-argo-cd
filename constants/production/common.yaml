@@ -1,0 +1,35 @@
+global:
+  environment: production
+  project:
+    projectID: learning-481011
+
+  gateway:
+    name: envoy-gateway
+    namespace: envoy-gateway-system
+    gatewayclass:
+      name: envoy-gateway-class
+  
+  certificate:
+    name: cardflex-cert
+    namespace: envoy-gateway-system
+    secretName: cardflex-tls
+    issuerRef:
+      name: letsencrypt-prod
+      kind: ClusterIssuer
+    email: aayushchauhan191601@gmail.com
+    acmeServer: https://acme-v02.api.letsencrypt.org/directory
+    dnsNames:
+      - cardflex.in
+      - www.cardflex.in
+      - api.cardflex.in
+      - www.api.cardflex.in
+      - staging.cardflex.in
+      - www.staging.cardflex.in
+      - api.staging.cardflex.in
+      - www.api.staging.cardflex.in
+      - argo.cardflex.in
+      - www.argo.cardflex.in
+  
+  secretStore:
+    name: gcp-secret-manager
+    projectID: learning-481011

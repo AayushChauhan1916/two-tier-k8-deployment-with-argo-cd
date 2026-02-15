@@ -4,12 +4,16 @@ metadata:
   name: {{ include "chart.fullname" . }}
 spec:
   parentRefs:
-    - name: {{ .Values.gateway.name }}
-      namespace: {{ .Values.gateway.namespace }}
+    - name: {{ .Values.global.gateway.name }}
+      namespace: {{ .Values.global.gateway.namespace }}
 
   hostnames:
+    {{- if .Values.hostnames }}
 {{- range .Values.hostnames }}
     - {{ . | quote }}
+{{- end }}
+    {{- else }}
+    # Add service-specific hostnames if needed
 {{- end }}
 
   rules:

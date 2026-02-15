@@ -1,0 +1,1 @@
+# For this repo I am not using different infra for staging and production, so I am using the same constants for both environments. In a real-world scenario, you would likely have different values for staging and production.

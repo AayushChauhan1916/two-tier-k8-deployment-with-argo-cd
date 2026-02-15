@@ -5,8 +5,8 @@ metadata:
   namespace: argocd
 spec:
   parentRefs:
-  - name: envoy-gateway
-    namespace: envoy-gateway-system
+  - name: {{ .Values.global.gateway.name }}
+    namespace: {{ .Values.global.gateway.namespace }}
 
   hostnames:
   - argo.cardflex.in

@@ -19,9 +19,9 @@ service:
   type: ClusterIP
   port: 80
   targetPort: 80
-gateway:
-  name: envoy-gateway
-  namespace: envoy-gateway-system
 hostnames:
   - staging.cardflex.in
   - www.staging.cardflex.in
+
+# Reference global infrastructure values from common.yaml
+# Service uses: global.gateway, global.certificate, global.secretStore, global.project
