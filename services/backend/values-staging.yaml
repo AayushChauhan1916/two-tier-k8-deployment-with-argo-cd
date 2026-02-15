@@ -45,6 +45,3 @@ secrets:
 hostnames:
   - api.staging.cardflex.in
   - www.api.staging.cardflex.in
-
-# Reference global infrastructure values from common.yaml
-# Service uses: global.gateway, global.certificate, global.secretStore, global.project
